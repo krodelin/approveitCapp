@@ -129,7 +129,7 @@
 
 - (BOOL)outlineView:(CPOutlineView)outlineView shouldSelectItem:(id)item
 {
-    return [_sources objectForKey:item] == nil;
+    return ([_sources objectForKey:item] == nil);
 }
 
 - (BOOL)outlineView:(CPOutlineView)outlineView shouldCollapseItem:(id)item

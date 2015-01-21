@@ -649,7 +649,7 @@
 				<int key="NSWTFlags">1946157056</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
-				<object class="NSToolbar" key="NSViewClass" id="294257926">
+				<object class="NSToolbar" key="NSViewClass" id="727159450">
 					<string key="NSToolbarIdentifier">8D84CF0B-CC83-4CC8-B361-75BA2B4CA8E3</string>
 					<nil key="NSToolbarDelegate"/>
 					<bool key="NSToolbarPrefersToBeShown">YES</bool>
@@ -660,7 +660,7 @@
 					<int key="NSToolbarSizeMode">1</int>
 					<object class="NSMutableDictionary" key="NSToolbarIBIdentifiedItems">
 						<string key="NS.key.0">61934C3B-4146-4E77-8305-E6B53B3B9B40</string>
-						<object class="NSToolbarItem" key="NS.object.0" id="346639246">
+						<object class="NSToolbarItem" key="NS.object.0" id="860992390">
 							<string key="NSToolbarItemIdentifier">61934C3B-4146-4E77-8305-E6B53B3B9B40</string>
 							<string key="NSToolbarItemLabel">Debug it</string>
 							<string key="NSToolbarItemPaletteLabel">Debig it</string>
@@ -682,10 +682,10 @@
 						</object>
 					</object>
 					<array class="NSMutableArray" key="NSToolbarIBAllowedItems">
-						<reference ref="346639246"/>
+						<reference ref="860992390"/>
 					</array>
 					<array class="NSMutableArray" key="NSToolbarIBDefaultItems">
-						<reference ref="346639246"/>
+						<reference ref="860992390"/>
 					</array>
 					<array key="NSToolbarIBSelectableItems" id="0"/>
 				</object>
@@ -717,7 +717,7 @@
 																<object class="NSTextField" id="780641146">
 																	<reference key="NSNextResponder" ref="603157575"/>
 																	<int key="NSvFlags">266</int>
-																	<string key="NSFrame">{{0, 1}, {153, 14}}</string>
+																	<string key="NSFrame">{{0, -2}, {153, 14}}</string>
 																	<reference key="NSSuperview" ref="603157575"/>
 																	<reference key="NSWindow"/>
 																	<reference key="NSNextKeyView" ref="936225874"/>
@@ -770,7 +770,7 @@
 																		<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
 																		<string>NeXT TIFF v4.0 pasteboard type</string>
 																	</set>
-																	<string key="NSFrame">{{3, 0}, {17, 17}}</string>
+																	<string key="NSFrame">{{3, -3}, {17, 17}}</string>
 																	<reference key="NSSuperview" ref="936225874"/>
 																	<reference key="NSWindow"/>
 																	<reference key="NSNextKeyView" ref="684321192"/>
@@ -789,7 +789,7 @@
 																<object class="NSTextField" id="684321192">
 																	<reference key="NSNextResponder" ref="936225874"/>
 																	<int key="NSvFlags">266</int>
-																	<string key="NSFrame">{{25, 0}, {128, 17}}</string>
+																	<string key="NSFrame">{{25, -3}, {128, 17}}</string>
 																	<reference key="NSSuperview" ref="936225874"/>
 																	<reference key="NSWindow"/>
 																	<reference key="NSNextKeyView" ref="477211935"/>
@@ -899,7 +899,7 @@
 														</object>
 													</object>
 													<double key="NSRowHeight">24</double>
-													<int key="NSTvFlags">-767557632</int>
+													<int key="NSTvFlags">-1035993088</int>
 													<reference key="NSDelegate"/>
 													<reference key="NSDataSource"/>
 													<int key="NSColumnAutoresizingStyle">4</int>
@@ -912,6 +912,7 @@
 													<int key="NSTableViewRowSizeStyle">-1</int>
 													<bool key="NSOutlineViewAutoresizesOutlineColumnKey">NO</bool>
 													<float key="NSOutlineViewIndentationPerLevelKey">14</float>
+													<bool key="NSOutlineViewIndentationMarkerFollowsCellKey">NO</bool>
 												</object>
 											</array>
 											<string key="NSFrame">{{1, 1}, {156, 358}}</string>
@@ -1296,7 +1297,7 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">debug:</string>
 						<reference key="source" ref="635946545"/>
-						<reference key="destination" ref="346639246"/>
+						<reference key="destination" ref="860992390"/>
 					</object>
 					<int key="connectionID">535</int>
 				</object>
@@ -1814,7 +1815,7 @@
 						<reference key="object" ref="972006081"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="439893737"/>
-							<reference ref="294257926"/>
+							<reference ref="727159450"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1947,16 +1948,16 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">525</int>
-						<reference key="object" ref="294257926"/>
+						<reference key="object" ref="727159450"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="346639246"/>
+							<reference ref="860992390"/>
 						</array>
 						<reference key="parent" ref="972006081"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">534</int>
-						<reference key="object" ref="346639246"/>
-						<reference key="parent" ref="294257926"/>
+						<reference key="object" ref="860992390"/>
+						<reference key="parent" ref="727159450"/>
 					</object>
 				</array>
 			</object>
