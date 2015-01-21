@@ -10,6 +10,7 @@
 @import <AppKit/AppKit.j>
 
 @import "User.j"
+@import "ZxcvbnTransformer.j"
 
 // @import "WLArray.j"
 

@@ -681,10 +681,10 @@
 							<int key="NSToolbarItemVisibilityPriority">0</int>
 						</object>
 					</object>
-					<array class="NSMutableArray" key="NSToolbarIBAllowedItems">
+					<array key="NSToolbarIBAllowedItems">
 						<reference ref="860992390"/>
 					</array>
-					<array class="NSMutableArray" key="NSToolbarIBDefaultItems">
+					<array key="NSToolbarIBDefaultItems">
 						<reference ref="860992390"/>
 					</array>
 					<array key="NSToolbarIBSelectableItems" id="0"/>
@@ -825,7 +825,7 @@
 															<reference key="NSNextKeyView" ref="967509306"/>
 														</object>
 													</array>
-													<string key="NSFrameSize">{156, 358}</string>
+													<string key="NSFrameSize">{157, 358}</string>
 													<reference key="NSSuperview" ref="382042636"/>
 													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="603157575"/>
@@ -916,6 +916,7 @@
 												</object>
 											</array>
 											<string key="NSFrame">{{1, 1}, {156, 358}}</string>
+											<string key="NSBounds">{{1, 0}, {156, 358}}</string>
 											<reference key="NSSuperview" ref="897499775"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="996203535"/>
@@ -926,15 +927,17 @@
 										<object class="NSScroller" id="477211935">
 											<reference key="NSNextResponder" ref="897499775"/>
 											<int key="NSvFlags">-2147483392</int>
-											<string key="NSFrame">{{1, 343}, {4, 16}}</string>
+											<string key="NSFrame">{{1, 343}, {156, 16}}</string>
 											<reference key="NSSuperview" ref="897499775"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="329523277"/>
+											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 											<int key="NSsFlags">1</int>
 											<reference key="NSTarget" ref="897499775"/>
 											<string key="NSAction">_doScroller:</string>
-											<double key="NSPercent">0.21052631578947367</double>
+											<double key="NSCurValue">1</double>
+											<double key="NSPercent">0.99363057324840764</double>
 										</object>
 										<object class="NSScroller" id="761742891">
 											<reference key="NSNextResponder" ref="897499775"/>
@@ -953,7 +956,7 @@
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="761742891"/>
 									<bool key="NSDoNotTranslateAutoresizingMask">YES</bool>
-									<int key="NSsFlags">133682</int>
+									<int key="NSsFlags">133810</int>
 									<reference key="NSVScroller" ref="761742891"/>
 									<reference key="NSHScroller" ref="477211935"/>
 									<reference key="NSContentView" ref="382042636"/>

@@ -32,7 +32,7 @@
 
 - (@action)changePassword:(id)sender
 {
-    [_user setValue:_password forKey:@"password"];
+    [_user setValue:_password forKeyPath:@"password"];
     [self closeSheet:self];
 }
 

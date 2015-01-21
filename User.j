@@ -13,6 +13,7 @@
     CPString username @accessors;
     CPString email @accessors;
     CPString manager @accessors;
+    CPString password @accessors;
 }
 
 + (CPArray)remoteProperties
@@ -21,7 +22,8 @@
         ['pk', 'url'],
         ['username', 'username'],
         ['email', 'email'],
-        ['manager', 'manager']
+        ['manager', 'manager'],
+        ['password', 'password']
     ];
 }
 
