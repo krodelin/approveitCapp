@@ -1,0 +1,3 @@
+[submodule "Frameworks/Ratatosk"]
+	path = Frameworks/Ratatosk
+	url = https://github.com/wireload/Ratatosk.git
