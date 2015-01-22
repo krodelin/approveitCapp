@@ -186,8 +186,9 @@
         objects = [objectClass objectsFromJson:[anAction result]];
 
     [_arrayController addObjects:objects];
-
-    [_tableView reloadData];
+    if ([objects count] > 0)
+        [_arrayController setSelectedObjects:[CPArray arrayWithObject:[[_arrayController arrangedObjects] objectAtIndex:0]]];
+    // [_tableView reloadData];
 }
 
 @end
