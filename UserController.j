@@ -70,4 +70,9 @@
           contextInfo:nil];
 }
 
+- (void)debug
+{
+    console.log([_arrayController selectedObjects]);
+}
+
 @end

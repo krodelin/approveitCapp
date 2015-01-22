@@ -15,6 +15,7 @@
     CPString email @accessors;
     CPString manager @accessors;
     CPString password @accessors;
+    User manager @accessors;
 }
 
 + (CPArray)remoteProperties
@@ -23,8 +24,8 @@
         ['pk', 'url'],
         ['username', 'username'],
         ['email', 'email'],
-        ['manager', 'manager'],
-        ['password', 'password']
+        ['password', 'password'],
+        ['manager', 'manager', [WLForeignObjectByIdTransformer forObjectClass:User]]
     ];
 }
 
@@ -47,6 +48,11 @@
         [self setEmail:@"user@domain.net"];
     }
     return self;
+}
+
+- (CPString)usernameAndEmail
+{
+    return [self username] + @" <" + [self email] + @">"
 }
 
 #pragma mark -
