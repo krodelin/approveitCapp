@@ -7,8 +7,9 @@
  */
 
 @import "Ratatosk/Ratatosk.j"
+@import "RemoteObject.j"
 
-@implementation Project : WLRemoteObject
+@implementation Project : RemoteObject
 {
     CPString title @accessors;
     CPString notes @accessors;
@@ -31,6 +32,16 @@
 + (CPString)remoteName
 {
     return @"projects"
+}
+
+- (id)init
+{
+    if (self = [super init])
+    {
+        [self setTitle:@"New Project"];
+        [self setNotes:@"Notes"];
+    }
+    return self;
 }
 
 @end

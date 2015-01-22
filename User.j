@@ -7,8 +7,9 @@
  */
 
 @import "Ratatosk/Ratatosk.j"
+@import "RemoteObject.j"
 
-@implementation User : WLRemoteObject
+@implementation User : RemoteObject
 {
     CPString username @accessors;
     CPString email @accessors;
@@ -35,6 +36,25 @@
 + (CPString)remoteName
 {
     return @"users"
+}
+
+- (id)init
+{
+    if (self = [super init])
+    {
+        [self setUsername:@"user"];
+        [self setPassword:@"password"];
+        [self setEmail:@"user@domain.net"];
+    }
+    return self;
+}
+
+#pragma mark -
+#pragma mark WLRemoteLink delegates
+
+- (void)remoteActionDidFail:(WLRemoteAction)action
+{
+    debugger;
 }
 
 @end

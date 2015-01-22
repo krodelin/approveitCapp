@@ -30,13 +30,13 @@
 {
     [super awakeFromCib];
     var addButton = [CPButtonBar plusButton];
-    [addButton setAction:@selector(add:)];
-    [addButton setTarget:_arrayController];
+    [addButton setAction:@selector(addObject:)];
+    [addButton setTarget:self];
     [addButton setEnabled:YES];
 
     var minusButton = [CPButtonBar minusButton];
-    [minusButton setAction:@selector(remove:)];
-    [minusButton setTarget:_arrayController];
+    [minusButton setAction:@selector(removeObject:)];
+    [minusButton setTarget:self];
     [minusButton setEnabled:YES];
 
     [_buttonBar setButtons:[addButton, minusButton]];

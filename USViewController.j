@@ -42,8 +42,7 @@
     [_tableView setTarget:self];
     [_tableView setDoubleAction:@selector(showInspector:)];
 
-    var remoteName = [[[self class] objectClass] remoteName];
-    [WLRemoteAction schedule:WLRemoteActionGetType path:remoteName delegate:self message:"Loading all IDs"]
+    [self fetchAll];
 }
 
 - (void)observeValueForKeyPath:(CPString)keyPath ofObject:(id)object change:(CPDictionary)change context:(void)context
@@ -158,9 +157,25 @@
     }
 }
 
-- (void)reload
+- (void)fetchAll
 {
-    [_arrayController reload];
+    [[_arrayController mutableArrayValueForKey:@"content"] removeAllObjects]
+    var remoteName = [[[self class] objectClass] remoteName];
+    [WLRemoteAction schedule:WLRemoteActionGetType path:remoteName delegate:self message:"Loading all IDs"];
+}
+
+- (@action)addObject:(id)sender
+{
+    var object = [[[[self class] objectClass] alloc] init];
+    [_arrayController addObject:object];
+    [object create];
+}
+
+- (@action)removeObject:(id)sender
+{
+    var object = [[_arrayController selectedObjects] objectAtIndex:0];
+    [object delete];
+    [_arrayController removeObject:object];
 }
 
 #pragma mark - WLAction delegate
@@ -171,6 +186,8 @@
         objects = [objectClass objectsFromJson:[anAction result]];
 
     [_arrayController addObjects:objects];
+
+    [_tableView reloadData];
 }
 
 @end

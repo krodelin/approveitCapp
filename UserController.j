@@ -70,11 +70,4 @@
           contextInfo:nil];
 }
 
-- (@action)addObject:(id)sender
-{
-    var object = [[[[self class] objectClass] alloc] init];
-    [object ensureCreated];
-    [_arrayController addObject:object];
-}
-
 @end

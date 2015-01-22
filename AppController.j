@@ -78,7 +78,7 @@
 
 - (@action)debug:(id)sender
 {
-
+    [_activeController debug];
 }
 
 #pragma mark - Outline view Data source
