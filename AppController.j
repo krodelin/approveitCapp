@@ -39,7 +39,8 @@
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
 {
     // This is called when the application is done loading.
-    [self setPlatformTitle:@""];
+    // [self setPlatformTitle:@""];
+    [self selectItem:[[_sources objectForKey:@"GENERAL"] objectAtIndex:0]];
     // [[SCUserSessionManager defaultManager] setLoginProvider:[LoginController defaultController]]
 }
 
@@ -58,7 +59,6 @@
     // [[WLRemoteLink sharedRemoteLink] setSaveActionType:WLRemoteActionPatchType];
 
     [_outlineView expandItem:nil expandChildren:YES];
-    [self selectItem:[[_sources objectForKey:@"GENERAL"] objectAtIndex:0]];
 }
 
 - (void)selectItem:(id)item
