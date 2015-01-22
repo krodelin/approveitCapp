@@ -148,7 +148,7 @@
                                                 <tableViewGridLines key="gridStyleMask" vertical="YES" horizontal="YES"/>
                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 <tableColumns>
-                                                    <tableColumn editable="NO" width="256" minWidth="128" maxWidth="1024" id="yze-1k-OCU">
+                                                    <tableColumn editable="NO" width="128" minWidth="128" maxWidth="1024" id="yze-1k-OCU">
                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Username">
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -168,7 +168,7 @@
                                                             </binding>
                                                         </connections>
                                                     </tableColumn>
-                                                    <tableColumn editable="NO" width="501" minWidth="128" maxWidth="3.4028234663852886e+38" id="Hrd-1R-V5m">
+                                                    <tableColumn editable="NO" width="128" minWidth="128" maxWidth="3.4028234663852886e+38" id="Hrd-1R-V5m">
                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="E-Mail">
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -184,6 +184,27 @@
                                                             <binding destination="hC9-zA-iPU" name="value" keyPath="arrangedObjects.email" id="wwN-K8-WeL">
                                                                 <dictionary key="options">
                                                                     <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                                </dictionary>
+                                                            </binding>
+                                                        </connections>
+                                                    </tableColumn>
+                                                    <tableColumn editable="NO" width="128" minWidth="128" maxWidth="3.4028234663852886e+38" id="OcC-eX-yZf">
+                                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Manager">
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                        </tableHeaderCell>
+                                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="eqn-sU-H42">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                        <connections>
+                                                            <binding destination="hC9-zA-iPU" name="value" keyPath="arrangedObjects.manager.username" id="eAQ-L5-Iiu">
+                                                                <dictionary key="options">
+                                                                    <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                                    <string key="NSNullPlaceholder">None</string>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -323,9 +344,18 @@
                                                 </menu>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="hC9-zA-iPU" name="content" keyPath="arrangedObjects.self" id="InY-Kg-JlR"/>
-                                                <binding destination="hC9-zA-iPU" name="contentValues" keyPath="arrangedObjects.usernameAndEmail" previousBinding="InY-Kg-JlR" id="n03-d9-SL4"/>
-                                                <binding destination="hC9-zA-iPU" name="selectedObject" keyPath="selection.manager" previousBinding="n03-d9-SL4" id="ObN-Gn-kMS"/>
+                                                <binding destination="hC9-zA-iPU" name="content" keyPath="arrangedObjects.self" id="3sU-QF-KFh">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="hC9-zA-iPU" name="contentValues" keyPath="arrangedObjects.usernameAndEmail" previousBinding="3sU-QF-KFh" id="fbo-Yk-eCc">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                        <string key="NSNullPlaceholder">None</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="hC9-zA-iPU" name="selectedObject" keyPath="selection.manager" previousBinding="fbo-Yk-eCc" id="VMw-DN-g4I"/>
                                             </connections>
                                         </popUpButton>
                                     </subviews>
