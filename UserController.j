@@ -64,7 +64,7 @@
     var passwordChangeController = [[PasswordChangeController alloc] initWithWindowCibName:@"PasswordChangePanel"];
     [passwordChangeController setUser:[_arrayController selection]];
     [CPApp beginSheet:[passwordChangeController window]
-       modalForWindow:_inspectorWindow
+       modalForWindow:[CPApp mainWindow]
         modalDelegate:self
        didEndSelector:nil
           contextInfo:nil];
