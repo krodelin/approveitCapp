@@ -70,7 +70,7 @@
     }
     else
     {
-        return @"";
+        return @"none";
     }
 }
 
