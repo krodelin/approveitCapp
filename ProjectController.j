@@ -18,7 +18,9 @@
 
 @implementation ProjectController : USViewController
 {
-    @outlet CPButtonBar _buttonBar;
+    @outlet CPButtonBar _projectButtonBar;
+    @outlet CPButtonBar _requestButtonBar;
+    @outlet     CPArrayController   _requestArrayController;
 }
 
 + (class)objectClass
@@ -29,18 +31,32 @@
 - (void)awakeFromCib
 {
     [super awakeFromCib];
+
     var addButton = [CPButtonBar plusButton];
-    [addButton setAction:@selector(addObject:)];
+    [addButton setAction:@selector(addProject:)];
     [addButton setTarget:self];
     [addButton setEnabled:YES];
 
     var minusButton = [CPButtonBar minusButton];
-    [minusButton setAction:@selector(removeObject:)];
+    [minusButton setAction:@selector(removeProject:)];
     [minusButton setTarget:self];
     [minusButton setEnabled:YES];
 
-    [_buttonBar setButtons:[addButton, minusButton]];
-    [_buttonBar setHasResizeControl:NO];
+    [_projectButtonBar setButtons:[addButton, minusButton]];
+    [_projectButtonBar setHasResizeControl:NO];
+
+    addButton = [CPButtonBar plusButton];
+    [addButton setAction:@selector(addRequest:)];
+    [addButton setTarget:self];
+    [addButton setEnabled:YES];
+
+    minusButton = [CPButtonBar minusButton];
+    [minusButton setAction:@selector(removeRequest:)];
+    [minusButton setTarget:self];
+    [minusButton setEnabled:YES];
+
+    [_requestButtonBar setButtons:[addButton, minusButton]];
+    [_requestButtonBar setHasResizeControl:NO];
 }
 
 
@@ -57,6 +73,37 @@
 - (CPPredicate)defaultPredicate
 {
     return [CPPredicate predicateWithFormat:@"title CONTAINS \"\""]
+}
+
+- (@action)addProject:(id)sender
+{
+    var project = [[Project alloc] init];
+    [_arrayController addObject:project];
+    [project create];
+}
+
+- (@action)removeProject:(id)sender
+{
+    var project = [[_arrayController selectedObjects] objectAtIndex:0];
+    [project delete];
+    [_arrayController removeObject:project];
+}
+
+- (@action)addRequest:(id)sender
+{
+    var request = [[Request alloc] init],
+        project = [[_arrayController selectedObjects] objectAtIndex:0];
+    [request setProject: project];
+
+    [_requestArrayController addObject:request];
+    [request create];
+}
+
+- (@action)removeRequest:(id)sender
+{
+    var request = [[_requestArrayController selectedObjects] objectAtIndex:0];
+    [request delete];
+    [_requestArrayController removeObject:request];
 }
 
 @end

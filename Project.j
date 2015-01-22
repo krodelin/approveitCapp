@@ -13,18 +13,10 @@
 {
     CPString title @accessors;
     CPString notes @accessors;
+    CPArray requests @accessors;
 }
 
-+ (CPArray)remoteProperties
-{
-    return [
-        ['pk', 'url'],
-        ['title', 'title'],
-        ['notes', 'notes']
-    ];
-}
-
-+ (BOOL)automaticallyLoadsRemoteObjectsForUser
++ (BOOL)automaticallyLoadsRemoteObjectsForRequests
 {
     return YES;
 }
@@ -38,10 +30,72 @@
 {
     if (self = [super init])
     {
-        [self setTitle:@"New Project"];
-        [self setNotes:@"Notes"];
+        title = @"New Project";
+        notes = @"Notes";
     }
     return self;
 }
 
 @end
+
+@implementation Request : RemoteObject
+{
+    CPString title @accessors;
+    CPString notes @accessors;
+    Project project @accessors;
+}
+
+
+
++ (BOOL)automaticallyLoadsRemoteObjectsForProject
+{
+    return YES;
+}
+
++ (CPString)remoteName
+{
+    return @"requests"
+}
+
+- (id)init
+{
+    if (self = [super init])
+    {
+        title = @"New Request";
+        notes = @"Notes";
+    }
+    return self;
+}
+
+@end
+
+@implementation Project (RemoteProperties)
+
++ (CPArray)remoteProperties
+{
+    return [
+        ['pk', 'url'],
+        ['title', 'title'],
+        ['notes', 'notes'],
+        ['requests', 'requests', [WLForeignObjectsByIdsTransformer forObjectClass:Request]]
+    ];
+}
+
+@end
+
+@implementation Request (RemoteProperties)
+
++ (CPArray)remoteProperties
+{
+    return [
+        ['pk', 'url'],
+        ['title', 'title'],
+        ['notes', 'notes'],
+        ['project', 'project', [WLForeignObjectByIdTransformer forObjectClass:Project]]
+    ];
+}
+
+@end
+
+
+
