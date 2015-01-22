@@ -9,8 +9,14 @@
 @import <Foundation/Foundation.j>
 @import <AppKit/AppKit.j>
 
+@import "UserSessionManager.j"
+
 @import "UserController.j"
 @import "ProjectController.j"
+
+var LogoutTimeout = 10,
+    LogoutCountdownMessage = @"If you do nothing, you will be logged out automatically in %@ seconds.";
+
 
 @implementation AppController : CPObject
 {
@@ -165,9 +171,12 @@
 - (void)remoteLink:(WLRemoteLink)remoteLink willSendRequest:(CPURLRequest)aRequest withDelegate:(id)aDelegate context:(id)aContext
 {
     var cookie = [[CPCookie alloc] initWithName: @"csrftoken"],
-        csrfToken = [cookie value];
+        csrfToken = [cookie value],
+        authenticationToken = [[UserSessionManager defaultManager] authenticationToken];
 
     [aRequest setValue:csrfToken forHTTPHeaderField:@"X-CSRFToken"];
+    if (authenticationToken)
+        [aRequest setValue:"Token " + authenticationToken forHTTPHeaderField:@"Authorization"];
 }
 
 #pragma mark -
@@ -187,6 +196,61 @@
     }
 
     document.title = "Approve It! - " + title;
+}
+
+- (@action)logout:(id)sender
+{
+    var alert = [[CPAlert alloc] init];
+    [alert addButtonWithTitle:@"Logout"];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert setMessageText: @"Are you sure you want to logout?"];
+    [alert setInformativeText:[CPString stringWithFormat:LogoutCountdownMessage,LogoutTimeout]];
+    [alert setIcon:CPImageInBundle(@"lock_24x24.png")];
+
+    var myTimer = [CPTimer timerWithTimeInterval: 1 target:self selector: @selector(killLogoutAlert:) userInfo:@{@"count":0,@"alert":alert} repeats:YES];
+
+    [[CPRunLoop currentRunLoop] addTimer:myTimer forMode:CPDefaultRunLoopMode];
+
+     [alert runModalWithDidEndBlock:(function(/*CPAlert*/alert, /*CPInteger*/returnCode){
+        [myTimer invalidate];
+        [self logoutAlert:alert didReturn:returnCode];
+    })];
+}
+
+- (void)killLogoutAlert:(CPTimer)theTimer
+{
+    var alert = [[theTimer userInfo] objectForKey:@"alert"],
+        count = [[theTimer userInfo] objectForKey:@"count"];
+    [[theTimer userInfo] setObject:(count + 1) forKey:@"count"];
+   [alert setInformativeText:[CPString stringWithFormat:LogoutCountdownMessage,(LogoutTimeout - count)]];
+    if (count > LogoutTimeout)
+    {
+        [theTimer invalidate];
+        [alert _takeReturnCodeFrom:[[alert buttons] objectAtIndex:1]];
+    }
+}
+
+- (void)logoutAlert:(CPAlert)alert didReturn:(CPInteger)returnCode
+{
+    switch (returnCode)
+    {
+        case 0:
+            [[UserSessionManager defaultManager] logout:self];
+            break;
+        case 1:
+            break;
+    }
+}
+
+#pragma mark - UserSessionManager delegates
+
+- (void)logoutDidSucceed:(UserManager)userManager
+{
+    window.location.href = ([[CPBundle mainBundle] objectForInfoDictionaryKey:@"LogoutURL"] || @"http://www.google.com/");
+}
+
+- (void)logoutDidFail:(UserManager)userManager
+{
 }
 
 @end

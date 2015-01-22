@@ -10,5 +10,11 @@
     <string>1.0</string>
     <key>CPHumanReadableCopyright</key>
     <string>Copyright © 2015, Krodelin Software Solutions All rights reserved.</string>
+    <key>AuthLoginURL</key>
+    <string>/api-token-auth/</string>
+    <key>AuthLogoutURL</key>
+    <string>/admin/v1/users/sign_out.json</string>
+    <key>LogoutURL</key>
+    <string>http://www.google.com/</string>
 </dict>
 </plist>
