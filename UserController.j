@@ -56,7 +56,7 @@
 
 - (CPPredicate)defaultPredicate
 {
-    return [CPPredicate predicateWithFormat:@"fullName CONTAINS \"\""]
+    return [CPPredicate predicateWithFormat:@"email CONTAINS \"\""]
 }
 
 - (@action)changeUserPassword:(id)sender
