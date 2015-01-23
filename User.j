@@ -8,6 +8,7 @@
 
 @import "Ratatosk/Ratatosk.j"
 @import "RemoteObject.j"
+@import <Foundation/CPUserSessionManager.j>
 
 @implementation User : RemoteObject
 {
@@ -53,6 +54,25 @@
 - (CPString)usernameAndEmail
 {
     return [self username] + @" <" + [self email] + @">"
+}
+
++ (User)fetchCurrent
+{
+    [WLRemoteAction schedule:WLRemoteActionGetType path:[self remoteName] + @"/current" delegate:self message:"Loading current User"];
+}
+
++ (User)current
+{
+    return [[CPUserSessionManager defaultManager] userIdentifier];
+}
+
+#pragma mark -
+#pragma mark WLAction delegate
+
++ (void)remoteActionDidFinish:(WLRemoteAction)anAction
+{
+    var user = [[User alloc] initWithJson:[anAction result]];
+    [[CPUserSessionManager defaultManager] setUserIdentifier:user];
 }
 
 #pragma mark -

@@ -32,7 +32,7 @@ app (projectName, function(task)
     task.setAuthor("Krodelin Software Solutions");
     task.setEmail("info@krodelin.com");
     task.setSummary("approveitCapp");
-    task.setSources(new FileList("**/*.j").exclude(FILE.join("Build", "**")).exclude(FILE.join("Frameworks", "Source", "**")));
+    task.setSources(new FileList("**/*.j").include("*.js").exclude(FILE.join("Build", "**")).exclude(FILE.join("Frameworks", "Source", "**")));
     task.setResources(new FileList("Resources/**"));
     task.setIndexFilePath("index.html");
     task.setInfoPlistPath("Info.plist");
