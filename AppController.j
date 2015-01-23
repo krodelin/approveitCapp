@@ -253,4 +253,28 @@ var LogoutTimeout = 10,
 {
 }
 
+#pragma mark -
+#pragma mark CPSplitView delegate
+
+- (float)splitView:(CPSplitView)aSplitView constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)dividerIndex
+{
+    return 160;
+}
+
+- (float)splitView:(CPSplitView)aSplitView constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)dividerIndex
+{
+    return 200;
+}
+
+- (BOOL)splitView:(CPSplitView)aSplitView canCollapseSubview:(CPView)aSubview
+{
+    return YES;
+    // return [aSubview isEqual:[_outlineView superView]];
+}
+
+- (BOOL)splitView:(CPSplitView)aSplitView shouldCollapseSubview:(CPView)aSubview forDoubleClickOnDividerAtIndex:(int)indexOfDivider
+{
+    return [_outlineView isDescendantOf:aSubview];
+}
+
 @end

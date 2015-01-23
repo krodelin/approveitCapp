@@ -22,6 +22,8 @@
     @outlet CPButtonBar _requestButtonBar;
     @outlet CPArrayController _requestArrayController;
     @outlet CPArrayController _usersController;
+    @outlet CPSplitView _projectsSplitView;
+    @outlet CPSplitView _requestsSplitView;
 }
 
 + (class)objectClass
@@ -115,6 +117,25 @@
 - (void)userListRecievedUsers:users
 {
     [_usersController addObjects:users];
+}
+
+#pragma mark -
+#pragma mark CPSplitView delegate
+
+- (float)splitView:(CPSplitView)aSplitView constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)dividerIndex
+{
+    if ([aSplitView isEqual:_projectsSplitView])
+            return proposedMin + 50;
+
+    return proposedMin;
+}
+
+- (float)splitView:(CPSplitView)aSplitView constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)dividerIndex
+{
+    if ([aSplitView isEqual:_projectsSplitView])
+            return proposedMax - 200;
+
+    return proposedMax;
 }
 
 @end
