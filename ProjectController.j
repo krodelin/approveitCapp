@@ -13,14 +13,15 @@
 @import "USViewController.j"
 @import "Project.j"
 @import "UIIcon.j"
+@import "UserList.j"
 
-@import "PasswordChangeController.j"
 
 @implementation ProjectController : USViewController
 {
     @outlet CPButtonBar _projectButtonBar;
     @outlet CPButtonBar _requestButtonBar;
-    @outlet     CPArrayController   _requestArrayController;
+    @outlet CPArrayController _requestArrayController;
+    @outlet CPArrayController _usersController;
 }
 
 + (class)objectClass
@@ -31,6 +32,8 @@
 - (void)awakeFromCib
 {
     [super awakeFromCib];
+
+    [[[UserList alloc] init] fetchAll:self]
 
     var addButton = [CPButtonBar plusButton];
     [addButton setAction:@selector(addProject:)];
@@ -104,6 +107,14 @@
     var request = [[_requestArrayController selectedObjects] objectAtIndex:0];
     [request delete];
     [_requestArrayController removeObject:request];
+}
+
+#pragma mark -
+#pragma mark UserList delegate
+
+- (void)userListRecievedUsers:users
+{
+    [_usersController addObjects:users];
 }
 
 @end

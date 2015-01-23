@@ -8,6 +8,7 @@
 
 @import "Ratatosk/Ratatosk.j"
 @import "RemoteObject.j"
+@import "User.j"
 
 @implementation Project : RemoteObject
 {
@@ -43,6 +44,8 @@
     CPString title @accessors;
     CPString notes @accessors;
     Project project @accessors;
+    User requester @accessors;
+    User requestee @accessors;
 }
 
 
@@ -63,6 +66,8 @@
     {
         title = @"New Request";
         notes = @"Notes";
+        requester = [User current];
+        requestee = [User current];
     }
     return self;
 }
@@ -91,7 +96,9 @@
         ['pk', 'url'],
         ['title', 'title'],
         ['notes', 'notes'],
-        ['project', 'project', [WLForeignObjectByIdTransformer forObjectClass:Project]]
+        ['project', 'project', [WLForeignObjectByIdTransformer forObjectClass:Project]],
+        ['requester', 'requester', [WLForeignObjectByIdTransformer forObjectClass:User]],
+        ['requestee', 'requestee', [WLForeignObjectByIdTransformer forObjectClass:User]]
     ];
 }
 
