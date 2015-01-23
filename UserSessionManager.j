@@ -11,6 +11,8 @@
 @import <Foundation/CPUserSessionManager.j>
 @import "LoginController.j"
 
+@import "User.j"
+
 var DefaultSessionManager = nil;
 
 
@@ -70,7 +72,6 @@ var DefaultSessionManager = nil;
     var selectorToPerform;
     if (returnCode === LoginSucceeded)
     {
-        [self _setCurrentUser:[_loginProvider username]];
         _authenticationToken = [_loginProvider authenticationToken];
         selectorToPerform = @selector(loginDidSucceed:);
     }
@@ -81,20 +82,6 @@ var DefaultSessionManager = nil;
         [_loginDelegate performSelector:selectorToPerform withObject:self];
 
     _loginDelegate = nil;
-}
-
-- (void)_setCurrentUser:(CPString)aUser
-{
-    if (aUser)
-    {
-        [self setStatus:CPUserSessionLoggedInStatus];
-        [self setUserIdentifier:aUser];
-    }
-    else
-    {
-        [self setStatus:CPUserSessionLoggedOutStatus];
-        [self setUserIdentifier:nil];
-    }
 }
 
 - (void)connection:(CPURLConnection)aConnection didFailWithError:(CPException)anException
@@ -127,7 +114,7 @@ var DefaultSessionManager = nil;
         [aConnection cancel];
         if (statusCode === 200)
         {
-            [self _setCurrentUser:nil];
+            [self setStatus:CPUserSessionLoggedInStatus];
             if (delegate && [delegate respondsToSelector:@selector(logoutDidSucceed:)])
                 [delegate logoutDidSucceed:self];
         }
@@ -145,8 +132,6 @@ var DefaultSessionManager = nil;
     var responseBody = [data objectFromJSON],
         delegate = aConnection.delegate;
 
-    if (responseBody.username)
-        [self _setCurrentUser:responseBody.username];
     if (delegate && [delegate respondsToSelector:@selector(sessionSyncDidSucceed:)])
         [delegate sessionSyncDidSucceed:self];
 }
@@ -155,7 +140,7 @@ var DefaultSessionManager = nil;
 {
     _loginConnection = aConnection;
     [_loginConnection cancel];
-    [self _setCurrentUser:nil];
+    [self setStatus:CPUserSessionLoggedInStatus];
     [self login:self];
     if ([[_loginConnection delegate] respondsToSelector:@selector(sessionManagerDidInterceptAuthenticationChallenge:forConnection:)])
         [[_loginConnection delegate] sessionManagerDidInterceptAuthenticationChallenge:self forConnection:aConnection];
@@ -174,6 +159,7 @@ var DefaultSessionManager = nil;
     [_loginConnection._request._HTTPHeaderFields setObject:@"Token " + _authenticationToken forKey:@"Authorization"];
     [_loginConnection start];
     _loginConnection = nil;
+    [User fetchCurrent];
 }
 
 @end
