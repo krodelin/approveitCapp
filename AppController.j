@@ -146,6 +146,10 @@ var LogoutTimeout = 10,
 - (void)outlineViewSelectionDidChange:(CPNotification)notification
 {
     var newController = [_outlineView itemAtRow:[_outlineView selectedRow]];
+
+    if (!newController)
+        return;
+
     if ([newController isEqual:_activeController])
         return;
 

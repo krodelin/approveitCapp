@@ -80,7 +80,7 @@ DQ
                                 <textField verticalHuggingPriority="750" id="Irf-OP-M3L">
                                     <rect key="frame" x="90" y="88" width="295" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Username/E-Mail" drawsBackground="YES" id="rQa-cq-t6Z">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Username" drawsBackground="YES" id="rQa-cq-t6Z">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -109,10 +109,10 @@ DQ
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="mHQ-cR-isu">
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="MDE-ct-c5x">
                         <rect key="frame" x="0.0" y="221" width="480" height="96"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="iJW-o5-lru"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="login_logo" id="BsZ-8f-rum"/>
                     </imageView>
                 </subviews>
             </view>
@@ -123,5 +123,6 @@ DQ
     </objects>
     <resources>
         <image name="lock_24x24" width="24" height="24"/>
+        <image name="login_logo" width="480" height="96"/>
     </resources>
 </document>
