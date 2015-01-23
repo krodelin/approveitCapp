@@ -24,4 +24,10 @@
     }
 }
 
++ (void)fetchAll:(id)delegate
+{
+    var remoteName = [self remoteName];
+    [WLRemoteAction schedule:WLRemoteActionGetType path:remoteName delegate:delegate message:(@"Loading all " + remoteName)];
+}
+
 @end

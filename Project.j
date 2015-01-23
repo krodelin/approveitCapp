@@ -97,8 +97,8 @@
         ['title', 'title'],
         ['notes', 'notes'],
         ['project', 'project', [WLForeignObjectByIdTransformer forObjectClass:Project]],
-        ['requester', 'requester', [WLForeignObjectByIdTransformer forObjectClass:Request]],
-        ['requestee', 'requestee', [WLForeignObjectByIdTransformer forObjectClass:Request]]
+        ['requester', 'requester', [WLForeignObjectByIdTransformer forObjectClass:User]],
+        ['requestee', 'requestee', [WLForeignObjectByIdTransformer forObjectClass:User]]
     ];
 }
 

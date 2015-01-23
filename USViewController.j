@@ -25,11 +25,6 @@
     @outlet     CPWindow            _inspectorWindow;
 }
 
-+ (class)objectClass
-{
-    debugger;
-}
-
 - (void)awakeFromCib
 {
     // This is called when the cib is done loading.
@@ -160,9 +155,10 @@
 - (void)fetchAll
 {
     [[_arrayController mutableArrayValueForKey:@"content"] removeAllObjects]
-    var remoteName = [[[self class] objectClass] remoteName];
-    [WLRemoteAction schedule:WLRemoteActionGetType path:remoteName delegate:self message:"Loading all IDs"];
+    [[[self class] objectClass] fetchAll:self];
 }
+
+
 
 - (@action)addObject:(id)sender
 {
@@ -185,10 +181,13 @@
     var objectClass = [[self class] objectClass],
         objects = [objectClass objectsFromJson:[anAction result]];
 
-    [_arrayController addObjects:objects];
+
     if ([objects count] > 0)
+    {
+        [_arrayController addObjects:objects];
         [_arrayController setSelectedObjects:[CPArray arrayWithObject:[[_arrayController arrangedObjects] objectAtIndex:0]]];
-    // [_tableView reloadData];
+    }
+
 }
 
 @end
