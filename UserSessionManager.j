@@ -46,7 +46,7 @@ var DefaultSessionManager = nil;
 - (void)logout:(id)delegate
 {
     var request = [CPURLRequest requestWithURL:[[CPBundle mainBundle] objectForInfoDictionaryKey:@"AuthLogoutURL"] || @"/session/"];
-    [request setHTTPMethod:@"DELETE"];
+    // [request setHTTPMethod:@"DELETE"];
 
     _logoutConnection = [CPURLConnection connectionWithRequest:request delegate:self];
     _logoutConnection.delegate = delegate
@@ -115,6 +115,8 @@ var DefaultSessionManager = nil;
         if (statusCode === 200)
         {
             [self setStatus:CPUserSessionLoggedInStatus];
+            [self setUserIdentifier:nil];
+            _authenticationToken = nil;
             if (delegate && [delegate respondsToSelector:@selector(logoutDidSucceed:)])
                 [delegate logoutDidSucceed:self];
         }
