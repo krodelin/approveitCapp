@@ -77,7 +77,6 @@
 
 - (void)action:(CPString)actionName
 {
-    [self willChangeValueForKey:@"status"];
     [WLRemoteAction schedule:WLRemoteActionPostType path:[self remotePath] + actionName + @"/" delegate:self message:actionName + @"Action"];
 }
 
@@ -182,13 +181,14 @@
 }
 
 + (CPSet)keyPathsForValuesAffectingValueForKey:(CPString)key
-{   CPLog.debug(@"keyPathsForValuesAffectingValueForKey:" + key);
+{
+    // CPLog.debug(@"keyPathsForValuesAffectingValueForKey:" + key);
     var keyPaths = [CPSet setWithSet:[super keyPathsForValuesAffectingValueForKey:key]];
     if ([key hasPrefix:@"is"] && [key hasSuffix:@"Allowed"])
     {
         [keyPaths addObjectsFromArray:[@"status", @"requester", @"requestee"]];
     }
-    CPLog.debug(keyPaths);
+    // CPLog.debug(keyPaths);
     return keyPaths;
 }
 
@@ -197,6 +197,14 @@
 
 - (void)remoteActionDidFinish:(WLRemoteAction)anAction
 {
+    [self willChangeValueForKey:@"status"];
+    [self willChangeValueForKey:@"isApproveAllowed"];
+    [self willChangeValueForKey:@"isRejectAllowed"];
+    [self willChangeValueForKey:@"isRequestAllowed"];
+    [self willChangeValueForKey:@"isProvideAllowed"];
+    [self willChangeValueForKey:@"isFinishAllowed"];
+    [self willChangeValueForKey:@"isReopenAllowed"];
+
     [super remoteActionDidFinish:anAction];
     var type = [anAction type];
     if (type == WLRemoteActionPostType || type == WLRemoteActionPutType || type == WLRemoteActionPatchType)
@@ -204,9 +212,20 @@
         if ([[anAction message] hasSuffix:@"Action"])
         {
             [self updateFromJson:[anAction result]];
-            [self didChangeValueForKey:@"status"];
         }
     }
+    [self didChangeValueForKey:@"status"];
+    [self didChangeValueForKey:@"isApproveAllowed"];
+    [self didChangeValueForKey:@"isRejectAllowed"];
+    [self didChangeValueForKey:@"isRequestAllowed"];
+    [self didChangeValueForKey:@"isProvideAllowed"];
+    [self didChangeValueForKey:@"isFinishAllowed"];
+    [self didChangeValueForKey:@"isReopenAllowed"];
+}
+
+- (bool)validateUserInterfaceItem:(id)item
+{
+    debugger;
 }
 
 @end

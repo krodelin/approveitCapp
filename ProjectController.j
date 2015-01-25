@@ -14,6 +14,7 @@
 @import "Project.j"
 @import "UIIcon.j"
 @import "UserList.j"
+@import "RequestGraphView.j"
 
 
 @implementation ProjectController : USViewController
@@ -24,6 +25,7 @@
     @outlet CPArrayController _usersController;
     @outlet CPSplitView _projectsSplitView;
     @outlet CPSplitView _requestsSplitView;
+    @outlet RequestGraphView _requestGraphView;
 }
 
 + (class)objectClass
@@ -62,6 +64,8 @@
 
     [_requestButtonBar setButtons:[addButton, minusButton]];
     [_requestButtonBar setHasResizeControl:NO];
+
+    [_requestGraphView bind:@"status" toObject:_requestArrayController withKeyPath:@"selection.status" options:nil];
 }
 
 

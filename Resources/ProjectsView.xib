@@ -11,6 +11,7 @@
                 <outlet property="_projectButtonBar" destination="Cmc-MY-jsg" id="JhM-q8-xNP"/>
                 <outlet property="_requestArrayController" destination="Cqg-Xg-JQb" id="CqX-Ir-1yK"/>
                 <outlet property="_requestButtonBar" destination="Ljl-dP-COk" id="l2r-84-rGR"/>
+                <outlet property="_requestGraphView" destination="6No-gc-VRO" id="57m-g7-MdO"/>
                 <outlet property="_usersController" destination="rPv-xr-p7q" id="vIs-eg-EN7"/>
                 <outlet property="view" destination="JNQ-Aa-5fC" id="YDf-0R-q85"/>
             </connections>
@@ -424,7 +425,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <binding destination="Cqg-Xg-JQb" name="enabled" keyPath="selection.isApproveAllowed" id="BdV-5e-8q5"/>
+                                                            <binding destination="Cqg-Xg-JQb" name="enabled" keyPath="selection.isApproveAllowed" id="bjQ-Ta-1Qp"/>
                                                             <binding destination="Cqg-Xg-JQb" name="target" keyPath="selection.self" id="DlJ-Pv-Tsl">
                                                                 <dictionary key="options">
                                                                     <string key="NSSelectorName">approve</string>
@@ -464,6 +465,22 @@
                                                             </binding>
                                                         </connections>
                                                     </button>
+                                                    <button verticalHuggingPriority="750" id="TTQ-BY-8Qt">
+                                                        <rect key="frame" x="11" y="16" width="125" height="32"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="push" title="ReOpen" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TbD-G2-dOs">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <binding destination="Cqg-Xg-JQb" name="enabled" keyPath="selection.isReopenAllowed" id="0Vm-gm-wNl"/>
+                                                            <binding destination="Cqg-Xg-JQb" name="target" keyPath="selection.self" id="x6H-tY-FRI">
+                                                                <dictionary key="options">
+                                                                    <string key="NSSelectorName">reopen</string>
+                                                                </dictionary>
+                                                            </binding>
+                                                        </connections>
+                                                    </button>
                                                     <button verticalHuggingPriority="750" id="8Ku-tg-reN">
                                                         <rect key="frame" x="11" y="115" width="125" height="32"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -496,22 +513,28 @@
                                                             </binding>
                                                         </connections>
                                                     </button>
-                                                    <button verticalHuggingPriority="750" id="TTQ-BY-8Qt">
-                                                        <rect key="frame" x="11" y="16" width="125" height="32"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="push" title="ReOpen" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TbD-G2-dOs">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <binding destination="Cqg-Xg-JQb" name="enabled" keyPath="selection.isReopenAllowed" id="0Vm-gm-wNl"/>
-                                                            <binding destination="Cqg-Xg-JQb" name="target" keyPath="selection.self" id="x6H-tY-FRI">
-                                                                <dictionary key="options">
-                                                                    <string key="NSSelectorName">reopen</string>
-                                                                </dictionary>
-                                                            </binding>
-                                                        </connections>
-                                                    </button>
+                                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="NHL-CE-Djm">
+                                                        <rect key="frame" x="137" y="23" width="466" height="187"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <clipView key="contentView" id="cce-Y9-57n">
+                                                            <rect key="frame" x="1" y="1" width="166" height="79"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <customView id="6No-gc-VRO" customClass="RequestGraphView">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="547" height="266"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </customView>
+                                                            </subviews>
+                                                        </clipView>
+                                                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="f0w-Hs-8CF">
+                                                            <rect key="frame" x="1" y="80" width="166" height="15"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </scroller>
+                                                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="oV8-ch-6l8">
+                                                            <rect key="frame" x="167" y="1" width="15" height="79"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </scroller>
+                                                    </scrollView>
                                                 </subviews>
                                             </view>
                                         </tabViewItem>
