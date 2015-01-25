@@ -73,6 +73,7 @@ var DefaultSessionManager = nil;
     if (returnCode === LoginSucceeded)
     {
         _authenticationToken = [_loginProvider authenticationToken];
+        CPLog.debug("Got Token " + _authenticationToken);
         selectorToPerform = @selector(loginDidSucceed:);
     }
     else

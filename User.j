@@ -80,7 +80,6 @@
 
 - (void)remoteActionDidFail:(WLRemoteAction)action
 {
-    debugger;
 }
 
 @end

@@ -225,7 +225,6 @@
 
 - (bool)validateUserInterfaceItem:(id)item
 {
-    debugger;
 }
 
 @end
