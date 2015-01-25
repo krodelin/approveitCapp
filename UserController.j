@@ -35,9 +35,10 @@
     var addButton = [self buttonWithImage:@"plus.png" action:@selector(addObject:)],
         minusButton = [self buttonWithImage:@"minus.png" action:@selector(removeObject:)],
         searchButton = [self buttonWithImage:@"funnel--pencil.png" action:@selector(showPredicateEditor:)],
-        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetPredicate:)];
+        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetPredicate:)],
+        historyButton = [self buttonWithImage:@"history.png" action:@selector(showHistory:)];
 
-    [_buttonBar setButtons:[addButton, minusButton, searchButton, resetButton]];
+    [_buttonBar setButtons:[addButton, minusButton, searchButton, resetButton, historyButton]];
     [_buttonBar setHasResizeControl:NO];
 }
 
@@ -88,6 +89,11 @@
         modalDelegate:self
        didEndSelector:nil
           contextInfo:nil];
+}
+
+- (@action)showHistory:(id)sender
+{
+
 }
 
 - (void)debug

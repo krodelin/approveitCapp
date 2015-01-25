@@ -46,17 +46,19 @@
     var addButton = [self buttonWithImage:@"plus.png" action:@selector(addProject:)],
         minusButton = [self buttonWithImage:@"minus.png" action:@selector(removeProject:)],
         searchButton = [self buttonWithImage:@"funnel--pencil.png" action:@selector(showProjectPredicateEditor:)],
-        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetProjectPredicate:)];
+        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetProjectPredicate:)],
+        historyButton = [self buttonWithImage:@"history.png" action:@selector(showProjectHistory:)];
 
-    [_projectButtonBar setButtons:[addButton, minusButton, searchButton, resetButton]];
+    [_projectButtonBar setButtons:[addButton, minusButton, searchButton, resetButton, historyButton]];
     [_projectButtonBar setHasResizeControl:NO];
 
     var addButton = [self buttonWithImage:@"plus.png" action:@selector(addRequest:)],
         minusButton = [self buttonWithImage:@"minus.png" action:@selector(removeRequest:)],
         searchButton = [self buttonWithImage:@"funnel--pencil.png" action:@selector(showRequestPredicateEditor:)],
-        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetRequestPredicate:)];
+        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetRequestPredicate:)],
+        historyButton = [self buttonWithImage:@"history.png" action:@selector(showRequestHistory:)];
 
-    [_requestButtonBar setButtons:[addButton, minusButton, searchButton, resetButton]];
+    [_requestButtonBar setButtons:[addButton, minusButton, searchButton, resetButton, historyButton]];
     [_requestButtonBar setHasResizeControl:NO];
 
 
@@ -105,6 +107,10 @@
     [_requestArrayController removeObject:request];
 }
 
+- (@action)showProjectHistory:(id)sender
+{
+
+}
 
 
 
@@ -166,6 +172,10 @@
     return [CPPredicate predicateWithFormat:@"title CONTAINS \"Request\""]
 }
 
+- (@action)showRequestHistory:(id)sender
+{
+
+}
 
 #pragma mark -
 #pragma mark UserList delegate
