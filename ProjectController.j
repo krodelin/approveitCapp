@@ -26,6 +26,10 @@
     @outlet CPSplitView _projectsSplitView;
     @outlet CPSplitView _requestsSplitView;
     @outlet RequestGraphView _requestGraphView;
+    @outlet     CPWindow              _projectPredicateEditorPanel;
+                CPPredicate         _projectFilterPredicate @accessors(property=projectFilterPredicate);
+    @outlet     CPWindow              _requestPredicateEditorPanel;
+                CPPredicate         _requestFilterPredicate @accessors(property=requestFilterPredicate);
 }
 
 + (class)objectClass
@@ -39,31 +43,22 @@
 
     [[[UserList alloc] init] fetchAll:self]
 
-    var addButton = [CPButtonBar plusButton];
-    [addButton setAction:@selector(addProject:)];
-    [addButton setTarget:self];
-    [addButton setEnabled:YES];
+    var addButton = [self buttonWithImage:@"plus.png" action:@selector(addProject:)],
+        minusButton = [self buttonWithImage:@"minus.png" action:@selector(removeProject:)],
+        searchButton = [self buttonWithImage:@"funnel--pencil.png" action:@selector(showProjectPredicateEditor:)],
+        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetProjectPredicate:)];
 
-    var minusButton = [CPButtonBar minusButton];
-    [minusButton setAction:@selector(removeProject:)];
-    [minusButton setTarget:self];
-    [minusButton setEnabled:YES];
-
-    [_projectButtonBar setButtons:[addButton, minusButton]];
+    [_projectButtonBar setButtons:[addButton, minusButton, searchButton, resetButton]];
     [_projectButtonBar setHasResizeControl:NO];
 
-    addButton = [CPButtonBar plusButton];
-    [addButton setAction:@selector(addRequest:)];
-    [addButton setTarget:self];
-    [addButton setEnabled:YES];
+    var addButton = [self buttonWithImage:@"plus.png" action:@selector(addRequest:)],
+        minusButton = [self buttonWithImage:@"minus.png" action:@selector(removeRequest:)],
+        searchButton = [self buttonWithImage:@"funnel--pencil.png" action:@selector(showRequestPredicateEditor:)],
+        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetRequestPredicate:)];
 
-    minusButton = [CPButtonBar minusButton];
-    [minusButton setAction:@selector(removeRequest:)];
-    [minusButton setTarget:self];
-    [minusButton setEnabled:YES];
-
-    [_requestButtonBar setButtons:[addButton, minusButton]];
+    [_requestButtonBar setButtons:[addButton, minusButton, searchButton, resetButton]];
     [_requestButtonBar setHasResizeControl:NO];
+
 
     [_requestGraphView bind:@"status" toObject:_requestArrayController withKeyPath:@"selection.status" options:nil];
 }
@@ -77,11 +72,6 @@
 - (CPString)sourceListDescription
 {
     return @"Projects";
-}
-
-- (CPPredicate)defaultPredicate
-{
-    return [CPPredicate predicateWithFormat:@"title CONTAINS \"\""]
 }
 
 - (@action)addProject:(id)sender
@@ -115,6 +105,68 @@
     [_requestArrayController removeObject:request];
 }
 
+
+
+
+
+- (@action)showProjectPredicateEditor:(id)sender
+{
+    if (!_projectFilterPredicate)
+        [self setProjectFilterPredicate:[self defaultProjectPredicate]];
+
+    [CPApp beginSheet:_projectPredicateEditorPanel
+       modalForWindow:[CPApp mainWindow]
+        modalDelegate:self
+       didEndSelector:nil
+          contextInfo:nil];
+}
+
+- (@action)resetProjectPredicate:(id)sender
+{
+    [self setProjectFilterPredicate:nil];
+}
+
+- (@action)closeProjectPredicateEditor:(id)sender
+{
+    [CPApp endSheet:_projectPredicateEditorPanel];
+    [_projectPredicateEditorPanel orderOut:sender];
+}
+
+- (CPPredicate)defaultProjectPredicate
+{
+    return [CPPredicate predicateWithFormat:@"title CONTAINS \"Project\""]
+}
+
+
+- (@action)showRequestPredicateEditor:(id)sender
+{
+    if (!_requestFilterPredicate)
+        [self setRequestFilterPredicate:[self defaultRequestPredicate]];
+
+    [CPApp beginSheet:_requestPredicateEditorPanel
+       modalForWindow:[CPApp mainWindow]
+        modalDelegate:self
+       didEndSelector:nil
+          contextInfo:nil];
+}
+
+- (@action)resetRequestPredicate:(id)sender
+{
+    [self setRequestFilterPredicate:nil];
+}
+
+- (@action)closeRequestPredicateEditor:(id)sender
+{
+    [CPApp endSheet:_requestPredicateEditorPanel];
+    [_requestPredicateEditorPanel orderOut:sender];
+}
+
+- (CPPredicate)defaultRequestPredicate
+{
+    return [CPPredicate predicateWithFormat:@"title CONTAINS \"Request\""]
+}
+
+
 #pragma mark -
 #pragma mark UserList delegate
 
@@ -128,18 +180,12 @@
 
 - (float)splitView:(CPSplitView)aSplitView constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)dividerIndex
 {
-    if ([aSplitView isEqual:_projectsSplitView])
-            return proposedMin + 50;
-
-    return proposedMin;
+    return proposedMin + 256;
 }
 
 - (float)splitView:(CPSplitView)aSplitView constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)dividerIndex
 {
-    if ([aSplitView isEqual:_projectsSplitView])
-            return proposedMax - 200;
-
-    return proposedMax;
+    return proposedMax - 256;
 }
 
 @end
