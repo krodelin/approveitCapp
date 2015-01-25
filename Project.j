@@ -77,6 +77,7 @@
 
 - (void)action:(CPString)actionName
 {
+    [self willChangeValueForKey:@"status"];
     [WLRemoteAction schedule:WLRemoteActionPostType path:[self remotePath] + actionName + @"/" delegate:self message:actionName + @"Action"];
 }
 
@@ -203,6 +204,7 @@
         if ([[anAction message] hasSuffix:@"Action"])
         {
             [self updateFromJson:[anAction result]];
+            [self didChangeValueForKey:@"status"];
         }
     }
 }

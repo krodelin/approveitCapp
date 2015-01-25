@@ -366,18 +366,13 @@
                                                             </menu>
                                                         </popUpButtonCell>
                                                         <connections>
-                                                            <binding destination="rPv-xr-p7q" name="content" keyPath="arrangedObjects" id="vSX-uu-Vil">
+                                                            <binding destination="rPv-xr-p7q" name="content" keyPath="arrangedObjects" id="How-Yu-3xS">
                                                                 <dictionary key="options">
-                                                                    <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                     <string key="NSNullPlaceholder">None</string>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="rPv-xr-p7q" name="contentValues" keyPath="arrangedObjects.usernameAndEmail" previousBinding="vSX-uu-Vil" id="zIL-zr-vrR">
-                                                                <dictionary key="options">
-                                                                    <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="Cqg-Xg-JQb" name="selectedObject" keyPath="selection.requester" previousBinding="zIL-zr-vrR" id="zgl-Tp-Pkb"/>
+                                                            <binding destination="rPv-xr-p7q" name="contentValues" keyPath="arrangedObjects.usernameAndEmail" previousBinding="How-Yu-3xS" id="17Z-8k-d1W"/>
+                                                            <binding destination="Cqg-Xg-JQb" name="selectedObject" keyPath="selection.requester" previousBinding="17Z-8k-d1W" id="F0D-NG-Shk"/>
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" id="KD0-I5-qOe">
@@ -395,18 +390,13 @@
                                                             </menu>
                                                         </popUpButtonCell>
                                                         <connections>
-                                                            <binding destination="rPv-xr-p7q" name="content" keyPath="arrangedObjects" id="6NC-ZH-CmM">
+                                                            <binding destination="rPv-xr-p7q" name="content" keyPath="arrangedObjects" id="56K-hp-xjY">
                                                                 <dictionary key="options">
-                                                                    <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                     <string key="NSNullPlaceholder">None</string>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="rPv-xr-p7q" name="contentValues" keyPath="arrangedObjects.usernameAndEmail" previousBinding="6NC-ZH-CmM" id="Ezo-aY-56d">
-                                                                <dictionary key="options">
-                                                                    <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="Cqg-Xg-JQb" name="selectedObject" keyPath="selection.requestee" previousBinding="Ezo-aY-56d" id="XFr-hS-Rc5"/>
+                                                            <binding destination="rPv-xr-p7q" name="contentValues" keyPath="arrangedObjects.usernameAndEmail" previousBinding="56K-hp-xjY" id="MO2-ns-xdi"/>
+                                                            <binding destination="Cqg-Xg-JQb" name="selectedObject" keyPath="selection.requestee" previousBinding="MO2-ns-xdi" id="iNB-jw-0dS"/>
                                                         </connections>
                                                     </popUpButton>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="hBK-B2-laQ">
