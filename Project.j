@@ -46,6 +46,9 @@
     Project project @accessors;
     User requester @accessors;
     User requestee @accessors;
+    CPString status @accessors;
+    CPArray possibleActions @accessors(readonly);
+    CPArray allowedActions @accessors(readonly);
 }
 
 
@@ -70,6 +73,138 @@
         requestee = [User current];
     }
     return self;
+}
+
+- (void)action:(CPString)actionName
+{
+    [WLRemoteAction schedule:WLRemoteActionPostType path:[self remotePath] + actionName + @"/" delegate:self message:actionName + @"Action"];
+}
+
+- (bool)allowed:(CPString)actionName
+{
+    return [allowedActions containsObject:actionName]
+}
+
+- (bool)possible:(CPString)actionName
+{
+    return [allowedActions containsObject:actionName]
+}
+
+- (void)approve
+{
+    [self action:@'approve'];
+}
+
+- (bool)isApproveAllowed
+{
+    return [self allowed:@'approve'];
+}
+
+- (bool)isApprovePossible
+{
+    return [self possible:@'approve'];
+}
+
+- (void)reject
+{
+    [self action:@'reject'];
+}
+
+- (bool)isRejectAllowed
+{
+    return [self allowed:@'reject'];
+}
+
+- (bool)isRejectPossible
+{
+    return [self possible:@'reject'];
+}
+
+- (void)request
+{
+    [self action:@'request'];
+}
+
+- (bool)isRequestAllowed
+{
+    return [self allowed:@'request'];
+}
+
+- (bool)isRequestPossible
+{
+    return [self possible:@'request'];
+}
+
+- (void)provide
+{
+    [self action:@'provide'];
+}
+
+- (bool)isProvideAllowed
+{
+    return [self allowed:@'provide'];
+}
+
+- (bool)isProvidePossible
+{
+    return [self possible:@'provide'];
+}
+
+- (void)finish
+{
+    [self action:@'finish'];
+}
+
+- (bool)isFinishAllowed
+{
+    return [self allowed:@'finish'];
+}
+
+- (bool)isFinishPossible
+{
+    return [self possible:@'finish'];
+}
+
+- (void)reopen
+{
+    [self action:@'reopen'];
+}
+
+- (bool)isReopenAllowed
+{
+    return [self allowed:@'reopen'];
+}
+
+- (bool)isReopenPossible
+{
+    return [self possible:@'reopen'];
+}
+
++ (CPSet)keyPathsForValuesAffectingValueForKey:(CPString)key
+{   CPLog.debug(@"keyPathsForValuesAffectingValueForKey:" + key);
+    var keyPaths = [CPSet setWithSet:[super keyPathsForValuesAffectingValueForKey:key]];
+    if ([key hasPrefix:@"is"] && [key hasSuffix:@"Allowed"])
+    {
+        [keyPaths addObjectsFromArray:[@"status", @"requester", @"requestee"]];
+    }
+    CPLog.debug(keyPaths);
+    return keyPaths;
+}
+
+#pragma mark -
+#pragma mark WLAction delegate
+
+- (void)remoteActionDidFinish:(WLRemoteAction)anAction
+{
+    [super remoteActionDidFinish:anAction];
+    var type = [anAction type];
+    if (type == WLRemoteActionPostType || type == WLRemoteActionPutType || type == WLRemoteActionPatchType)
+    {
+        if ([[anAction message] hasSuffix:@"Action"])
+        {
+            [self updateFromJson:[anAction result]];
+        }
+    }
 }
 
 @end
@@ -98,7 +233,10 @@
         ['notes', 'notes'],
         ['project', 'project', [WLForeignObjectByIdTransformer forObjectClass:Project]],
         ['requester', 'requester', [WLForeignObjectByIdTransformer forObjectClass:User]],
-        ['requestee', 'requestee', [WLForeignObjectByIdTransformer forObjectClass:User]]
+        ['requestee', 'requestee', [WLForeignObjectByIdTransformer forObjectClass:User]],
+        ['status', 'status'],
+        ['possibleActions', 'possible_actions'],
+        ['allowedActions', 'allowed_actions']
     ];
 }
 
