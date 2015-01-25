@@ -126,7 +126,7 @@
                                                                             <binding destination="Cqg-Xg-JQb" name="value" keyPath="arrangedObjects.title" id="LNd-o9-n1L"/>
                                                                         </connections>
                                                                     </tableColumn>
-                                                                    <tableColumn width="177" minWidth="10" maxWidth="3.4028234663852886e+38" id="oza-Ha-Beu">
+                                                                    <tableColumn editable="NO" width="177" minWidth="10" maxWidth="3.4028234663852886e+38" id="oza-Ha-Beu">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Status">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
