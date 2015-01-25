@@ -56,24 +56,24 @@ CPZeroRect = CGRectMakeZero;
 {
 }
 
-- (void)drawInRect:(CPRect)dstRect
-          fromRect:(CPRect)srcRect
+- (void)drawInRect:(CGRect)dstRect
+          fromRect:(CGRect)srcRect
          operation:(NSCompositingOperation)op
           fraction:(CGFloat)delta
 {
-	var ctx = [[CPGraphicsContext currentContext] graphicsPort];
-	CGContextDrawImage(ctx, dstRect, self);
+    var ctx = [[CPGraphicsContext currentContext] graphicsPort];
+    CGContextDrawImage(ctx, dstRect, self);
 }
 
-- (void)drawInRect:(CPRect)dstSpacePortionRect
-          fromRect:(CPRect)srcSpacePortionRect
+- (void)drawInRect:(CGRect)dstSpacePortionRect
+          fromRect:(CGRect)srcSpacePortionRect
          operation:(NSCompositingOperation)op
           fraction:(CGFloat)requestedAlpha
     respectFlipped:(bool)respectContextIsFlipped
              hints:(CPDictionary)hints
 {
-	var ctx = [[CPGraphicsContext currentContext] graphicsPort];
-	CGContextDrawImage(ctx, dstSpacePortionRect, self);
+    var ctx = [[CPGraphicsContext currentContext] graphicsPort];
+    CGContextDrawImage(ctx, dstSpacePortionRect, self);
 }
 
 @end

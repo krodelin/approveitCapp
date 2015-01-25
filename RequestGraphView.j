@@ -16,7 +16,7 @@
 
 - (BOOL)isFlipped
 {
-	return YES;
+    return YES;
 }
 
 - (void)setStatus:(CPString)newStatus
