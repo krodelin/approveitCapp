@@ -14,6 +14,9 @@
 CPFontAttributeName = @"CPFontAttributeName";
 CPForegroundColorAttributeName = @"CPForegroundColorAttributeName";
 CPParagraphStyleAttributeName = @"CPParagraphStyleAttributeName";
+CPCompositeSourceOver = @"CPCompositeSourceOver";
+
+CPZeroRect = CGRectMakeZero;
 
 @implementation CPMutableParagraphStyle : CPObject
 {
@@ -45,6 +48,32 @@ CPParagraphStyleAttributeName = @"CPParagraphStyleAttributeName";
 
 - (void)setMiterLimit:(CGFloat)mitterLimit
 {
+}
+
+@end
+
+@implementation CPImage (StyleKitMocks)
+{
+}
+
+- (void)drawInRect:(CPRect)dstRect
+          fromRect:(CPRect)srcRect
+         operation:(NSCompositingOperation)op
+          fraction:(CGFloat)delta
+{
+	var ctx = [[CPGraphicsContext currentContext] graphicsPort];
+	CGContextDrawImage(ctx, dstRect, self);
+}
+
+- (void)drawInRect:(CPRect)dstSpacePortionRect
+          fromRect:(CPRect)srcSpacePortionRect
+         operation:(NSCompositingOperation)op
+          fraction:(CGFloat)requestedAlpha
+    respectFlipped:(bool)respectContextIsFlipped
+             hints:(CPDictionary)hints
+{
+	var ctx = [[CPGraphicsContext currentContext] graphicsPort];
+	CGContextDrawImage(ctx, dstSpacePortionRect, self);
 }
 
 @end

@@ -14,6 +14,11 @@
     CPString status;
 }
 
+- (BOOL)isFlipped
+{
+	return YES;
+}
+
 - (void)setStatus:(CPString)newStatus
 {
     if (![newStatus isEqual: status])
@@ -25,7 +30,7 @@
 
 - (void)drawRect:(CGRect)dirtyRect
 {
-    [RequestStyleKit drawGraphWithStatus:status]
+    [RequestStyleKit drawGraph_overlayWithStatus:status]
 }
 
 @end

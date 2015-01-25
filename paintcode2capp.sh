@@ -24,9 +24,13 @@ cat $1 | \
 		s/#import/@import/g;
 		s/\(${CLASS_MATCH}\)/\(${CLASS_REPLACE}\)/g;
 		s/${CLASS_MATCH}(${WS}${VAR_MATCH}${WS}=)/var\2/g;
+		s/[[:alpha:]]+(${WS}${VAR_MATCH}${WS}=)/var\1/g;
 		s/${CLASS_MATCH}\.${METHOD_MATCH}/[CP\1 \2]/g;
-		s/(\[.*\]).${METHOD_MATCH}/\[\1 \2]/g;
+		s/(\[.+\]).${METHOD_MATCH}/\[\1 \2]/g;
 		s/(${VAR_MATCH})\.${METHOD_MATCH}${WS}=${WS}(.*);/\[\1 set_\2:\3\];/g
 		s/${CLASS_MATCH}/CP\1/g;
+		s/(=${WS})\([[:alpha:]]+\Ref\)/\1/g;
+		s/\[CPImage imageNamed: (.*)\];/CPImageInBundle(\1);/g;
+		s/([a-zA-Z0-9_]+)\.size/[\1 size]/g;
 		" | \
 	perl -0pe "s/^(\s+)var(\s+.*);\n\s+var\s(.*)\n/\1var\2,\n    \1\3/gm"

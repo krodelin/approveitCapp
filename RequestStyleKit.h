@@ -15,7 +15,7 @@
 @interface RequestStyleKit : NSObject
 
 // Drawing Methods
-+ (void)drawGraphWithStatus: (NSString*)status;
 + (void)drawGraph_textWithStatus: (NSString*)status;
++ (void)drawGraph_overlayWithStatus: (NSString*)status;
 
 @end
