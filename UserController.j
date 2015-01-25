@@ -19,6 +19,8 @@
 @implementation UserController : USViewController
 {
     @outlet CPButtonBar _buttonBar;
+    @outlet     CPWindow              _predicateEditorPanel;
+                CPPredicate         _filterPredicate @accessors(property=filterPredicate);
 }
 
 + (class)objectClass
@@ -29,20 +31,15 @@
 - (void)awakeFromCib
 {
     [super awakeFromCib];
-    var addButton = [CPButtonBar plusButton];
-    [addButton setAction:@selector(addObject:)];
-    [addButton setTarget:self];
-    [addButton setEnabled:YES];
 
-    var minusButton = [CPButtonBar minusButton];
-    [minusButton setAction:@selector(removeObject:)];
-    [minusButton setTarget:self];
-    [minusButton setEnabled:YES];
+    var addButton = [self buttonWithImage:@"plus.png" action:@selector(addObject:)],
+        minusButton = [self buttonWithImage:@"minus.png" action:@selector(removeObject:)],
+        searchButton = [self buttonWithImage:@"funnel--pencil.png" action:@selector(showPredicateEditor:)],
+        resetButton = [self buttonWithImage:@"funnel--minus.png" action:@selector(resetPredicate:)];
 
-    [_buttonBar setButtons:[addButton, minusButton]];
+    [_buttonBar setButtons:[addButton, minusButton, searchButton, resetButton]];
     [_buttonBar setHasResizeControl:NO];
 }
-
 
 - (CPImage)sourceListImage
 {
@@ -54,9 +51,32 @@
     return @"Users";
 }
 
+- (@action)showPredicateEditor:(id)sender
+{
+    if (!_filterPredicate)
+        [self setFilterPredicate:[self defaultPredicate]];
+
+    [CPApp beginSheet:_predicateEditorPanel
+       modalForWindow:[CPApp mainWindow]
+        modalDelegate:self
+       didEndSelector:nil
+          contextInfo:nil];
+}
+
+- (@action)resetPredicate:(id)sender
+{
+    [self setFilterPredicate:nil];
+}
+
+- (@action)closePredicateEditor:(id)sender
+{
+    [CPApp endSheet:_predicateEditorPanel];
+    [_predicateEditorPanel orderOut:sender];
+}
+
 - (CPPredicate)defaultPredicate
 {
-    return [CPPredicate predicateWithFormat:@"email CONTAINS \"\""]
+    return [CPPredicate predicateWithFormat:@"email CONTAINS \"domain\""]
 }
 
 - (@action)changeUserPassword:(id)sender

@@ -154,7 +154,6 @@ var LogoutTimeout = 10,
         return;
 
     [self willChangeValueForKey:@"mainContentController"];
-    [_activeController hideInspector:self];
     [[_activeController view] setHidden:YES];
 
     [[newController view] setFrame:[_contentView bounds]];
