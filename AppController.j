@@ -159,10 +159,6 @@ var LogoutTimeout = 10,
     [_contentView addSubview:[newController view]];
     [[newController view] setHidden:NO];
     [self setPlatformTitle:[newController sourceListDescription]];
-    // debugger;
-    // [_searchField setStringValue:@""];
-    // [_searchField performCLick:self];
-    // [_searchField setNeedsDisplay:YES];
     _activeController = newController;
     [self didChangeValueForKey:@"mainContentController"];
 }
