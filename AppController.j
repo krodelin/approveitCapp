@@ -176,10 +176,9 @@ var LogoutTimeout = 10,
         csrfToken = [cookie value],
         authenticationToken = [[UserSessionManager defaultManager] authenticationToken];
 
-        CPLog.debug("CSRF-Token " + csrfToken);
-        CPLog.debug("Auth-Token"  + authenticationToken);
+    CPLog.debug("CSRF-Token: " + csrfToken);
+    CPLog.debug("Auth-Token: "  + authenticationToken);
     [aRequest setValue:csrfToken forHTTPHeaderField:@"X-CSRFToken"];
-    debugger;
     if (authenticationToken)
         [aRequest setValue:"Token " + authenticationToken forHTTPHeaderField:@"Authorization"];
 }
